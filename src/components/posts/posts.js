@@ -1,12 +1,9 @@
 import Post from "../post/post.js";
 
 const template = `
-  <div class="card" id="posts" style="width: 18rem;">
-  <div class="card-header">
-    Posts
-  </div>
-  <ul class="list-group list-group-flush" v-for="item in items" key="item.id">
-  <Post class="list-group-item" :message="item.message"></Post>
+  <div  id="posts" class="container">
+  <ul class="list-group list-group-flush row" v-for="post in posts" key="post.id">
+  <Post class="list-group-item" :title="post.title" :body="post.body"></Post>
   </ul>
 </div>
 `;
@@ -17,12 +14,17 @@ export default {
     Post,
   },
   setup() {
-    const { ref } = Vue;
-    const items = new ref([
-      { id: 1, message: "hello" },
-      { id: 2, message: "hi" },
-      { id: 3, message: "bonjour" },
-    ]);
-    return { items };
+    const { ref, onMounted } = Vue;
+    const posts = new ref([]);
+
+    onMounted(async () => {
+      const response = await fetch(
+        "https://jsonplaceholder.typicode.com/posts"
+      );
+      const data = await response.json();
+      posts.value = data;
+    });
+
+    return { posts };
   },
 };
