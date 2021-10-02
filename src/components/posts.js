@@ -15,9 +15,15 @@ export default {
   },
   setup() {
     const { ref, onMounted } = Vue;
+    const { useStore } = Vuex;
     const posts = new ref([]);
 
     onMounted(async () => {
+      // Testing state
+      const store = useStore();
+      store.commit("increment");
+      console.log(store.state.count);
+
       const response = await fetch(
         "https://jsonplaceholder.typicode.com/posts"
       );

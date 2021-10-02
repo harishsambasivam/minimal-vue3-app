@@ -18,5 +18,20 @@ const App = {
 };
 
 window.addEventListener("load", () => {
-  Vue.createApp(App).mount("#app");
+  const { createStore } = Vuex;
+
+  const store = createStore({
+    state() {
+      return {
+        count: 0,
+      };
+    },
+    mutations: {
+      increment(state) {
+        state.count++;
+      },
+    },
+  });
+
+  Vue.createApp(App).use(store).mount("#app");
 });

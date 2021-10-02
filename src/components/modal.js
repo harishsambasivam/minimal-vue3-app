@@ -58,7 +58,6 @@ export default {
       const data = await response.json();
       console.log(data);
     };
-
     return { body, title, addPost };
   },
 };
