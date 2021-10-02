@@ -13,7 +13,7 @@ aria-hidden="true">
         class="btn-close"
         data-bs-dismiss="modal"
         aria-label="Close"
-        v-on:click="() => { title='', body=''}"
+        @click="() => { title='', body=''}"
       ></button>
     </div>
     <div class="modal-body">
@@ -27,7 +27,7 @@ aria-hidden="true">
   </div>
   <div class="text-center">  
   <button type="button" data-bs-dismiss="modal"
-  aria-label="Close" v-on:click="addPost(title,body)" class="btn btn-dark">Upload</button>
+  aria-label="Close" @click="addPost(title,body)" class="btn btn-dark">Upload</button>
     </div>
   </div>
 </div>
@@ -55,7 +55,6 @@ export default {
           },
         }
       );
-
       const data = await response.json();
       console.log(data);
     };

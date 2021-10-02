@@ -1,4 +1,4 @@
-import Post from "../post/post.js";
+import Post from "./post.js";
 
 const template = `
   <div  id="posts" class="container">
